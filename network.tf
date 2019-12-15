@@ -8,7 +8,8 @@ resource "azurerm_network_interface" "JenkinsMaster" {
     ip_configuration {
         name                          = "nicConfiguration"
         subnet_id                     = "${azurerm_subnet.subnet.id}"
-        private_ip_address_allocation = "Dynamic"
+        private_ip_address_allocation = "Static"
+        private_ip_address            = "10.0.1.4"
         public_ip_address_id          = "${azurerm_public_ip.myterraformpublicip.id}"
     }
 
@@ -26,7 +27,8 @@ resource "azurerm_network_interface" "Jenkins1604ACC" {
     ip_configuration {
         name                          = "nicConfiguration"
         subnet_id                     = "${azurerm_subnet.subnet.id}"
-        private_ip_address_allocation = "Dynamic"
+        private_ip_address_allocation = "Static"
+        private_ip_address            = "10.0.1.5"
     }
 
     tags = {
@@ -43,7 +45,8 @@ resource "azurerm_network_interface" "Jenkins1804ACC" {
     ip_configuration {
         name                          = "nicConfiguration"
         subnet_id                     = "${azurerm_subnet.subnet.id}"
-        private_ip_address_allocation = "Dynamic"
+        private_ip_address_allocation = "Static"
+        private_ip_address            = "10.0.1.6"
     }
 
     tags = {
@@ -60,7 +63,8 @@ resource "azurerm_network_interface" "Jenkins1804NonSGX" {
     ip_configuration {
         name                          = "nicConfiguration"
         subnet_id                     = "${azurerm_subnet.subnet.id}"
-        private_ip_address_allocation = "Dynamic"
+        private_ip_address_allocation = "Static"
+        private_ip_address            = "10.0.1.7"
     }
 
     tags = {
@@ -77,7 +81,8 @@ resource "azurerm_network_interface" "JenkinsWin2016ACC" {
     ip_configuration {
         name                          = "nicConfiguration"
         subnet_id                     = "${azurerm_subnet.subnet.id}"
-        private_ip_address_allocation = "Dynamic"
+        private_ip_address_allocation = "Static"
+        private_ip_address            = "10.0.1.8"
     }
 
     tags = {
@@ -94,7 +99,8 @@ resource "azurerm_network_interface" "JenkinsWin2016SGX" {
     ip_configuration {
         name                          = "nicConfiguration"
         subnet_id                     = "${azurerm_subnet.subnet.id}"
-        private_ip_address_allocation = "Dynamic"
+        private_ip_address_allocation = "Static"
+        private_ip_address            = "10.0.1.9"
     }
 
     tags = {
@@ -111,7 +117,8 @@ resource "azurerm_network_interface" "JenkinsWin2016NonSGX" {
     ip_configuration {
         name                          = "nicConfiguration"
         subnet_id                     = "${azurerm_subnet.subnet.id}"
-        private_ip_address_allocation = "Dynamic"
+        private_ip_address_allocation = "Static"
+        private_ip_address            = "10.0.1.10"
     }
 
     tags = {
