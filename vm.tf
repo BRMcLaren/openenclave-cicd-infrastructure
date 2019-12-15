@@ -16,7 +16,7 @@ resource "azurerm_virtual_machine" "JenkinsMaster" {
     storage_image_reference {
         publisher = "Canonical"
         offer     = "UbuntuServer"
-        sku       = "18.04.0-LTS"
+        sku       = "18.04-LTS"
         version   = "latest"
     }
 
