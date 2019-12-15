@@ -1,13 +1,13 @@
 # Create virtual machine
-resource "azurerm_virtual_machine" "JenkinsMaster" {
-    name                  = "JenkinsMaster"
-    location              = "eastus"
+resource "azurerm_virtual_machine" "${var.JenkinsMaster}" {
+    name                  = "${var.JenkinsMaster}"
+    location              = "${var.location}"
     resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
-    network_interface_ids = ["${azurerm_network_interface.JenkinsMaster.id}"]
-    vm_size               = "Standard_DS1_v2"
+    network_interface_ids = ["${azurerm_network_interface.${var.JenkinsMaster}.id}"]
+    vm_size               = "${var.vmsize_nonacc}"
 
     storage_os_disk {
-        name              = "JenkinsMaster"
+        name              = "${var.JenkinsMaster}"
         caching           = "ReadWrite"
         create_option     = "FromImage"
         managed_disk_type = "Premium_LRS"
@@ -21,7 +21,7 @@ resource "azurerm_virtual_machine" "JenkinsMaster" {
     }
 
     os_profile {
-        computer_name  = "JenkinsMaster"
+        computer_name  = "${var.JenkinsMaster}"
         admin_username = "azureuser"
     }
 
@@ -45,10 +45,10 @@ resource "azurerm_virtual_machine" "JenkinsMaster" {
 
 resource "azurerm_virtual_machine" "Jenkins1604ACC-1" {
     name                  = "Jenkins1604ACC-1"
-    location              = "eastus"
+    location              = "${var.location}"
     resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
     network_interface_ids = ["${azurerm_network_interface.Jenkins1604ACC.id}"]
-    vm_size               = "Standard_DC2s"
+    vm_size               = "${var.vmsize_acc}"
 
     storage_os_disk {
         name              = "Jenkins1604ACC-1"
@@ -89,10 +89,10 @@ resource "azurerm_virtual_machine" "Jenkins1604ACC-1" {
 
 resource "azurerm_virtual_machine" "Jenkins1804ACC-1" {
     name                  = "Jenkins1804ACC-1"
-    location              = "eastus"
+    location              = "${var.location}"
     resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
     network_interface_ids = ["${azurerm_network_interface.Jenkins1804ACC.id}"]
-    vm_size               = "Standard_DC2s"
+    vm_size               = "${var.vmsize_acc}"
 
     storage_os_disk {
         name              = "Jenkins1804ACC-1"
@@ -134,10 +134,10 @@ resource "azurerm_virtual_machine" "Jenkins1804ACC-1" {
 
 resource "azurerm_virtual_machine" "Jenkins1804NonSGX-1" {
     name                  = "Jenkins1804NonSGX-1"
-    location              = "eastus"
+    location              = "${var.location}"
     resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
     network_interface_ids = ["${azurerm_network_interface.Jenkins1804NonSGX.id}"]
-    vm_size               = "Standard_DS1_v2"
+    vm_size               = "${var.vmsize_nonacc}"
 
     storage_os_disk {
         name              = "Jenkins1804NonSGX-1"
@@ -179,10 +179,10 @@ resource "azurerm_virtual_machine" "Jenkins1804NonSGX-1" {
 
 resource "azurerm_virtual_machine" "JenkinsWin2016ACC-1" {
     name                  = "JenkinsWin2016ACC-1"
-    location              = "eastus"
+    location              = "${var.location}"
     resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
     network_interface_ids = ["${azurerm_network_interface.JenkinsWin2016ACC.id}"]
-    vm_size               = "Standard_DC2s"
+    vm_size               = "${var.vmsize_acc}"
 
     storage_os_disk {
         name              = "Win2016ACC-1"
@@ -222,10 +222,10 @@ resource "azurerm_virtual_machine" "JenkinsWin2016ACC-1" {
 
 resource "azurerm_virtual_machine" "Win2016SGX-1" {
     name                  = "JenkinsWin2016SGX-1"
-    location              = "eastus"
+    location              = "${var.location}"
     resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
     network_interface_ids = ["${azurerm_network_interface.JenkinsWin2016SGX.id}"]
-    vm_size               = "Standard_DC2s"
+    vm_size               = "${var.vmsize_acc}"
 
     storage_os_disk {
         name              = "JenkinsWin2016SGX-1"
@@ -265,10 +265,10 @@ resource "azurerm_virtual_machine" "Win2016SGX-1" {
 
 resource "azurerm_virtual_machine" "JenkinsWin2016NonSGX-1" {
     name                  = "JenkinsWin2016NonSGX-1"
-    location              = "eastus"
+    location              = "${var.location}"
     resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
     network_interface_ids = ["${azurerm_network_interface.JenkinsWin2016NonSGX.id}"]
-    vm_size               = "Standard_DS1_v2"
+    vm_size               = "${var.vmsize_nonacc}"
 
     storage_os_disk {
         name              = "JenkinsWin2016NonSGX-1"
