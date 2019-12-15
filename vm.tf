@@ -177,48 +177,131 @@ resource "azurerm_virtual_machine" "Jenkins1804NonSGX-1" {
 }
 
 
-#resource "azurerm_virtual_machine" "JenkinsWin16ACC-1" {
-#    name                  = "JenkinsWin16ACC-1"
-#    location              = "eastus"
-#    resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
-#    network_interface_ids = ["${azurerm_network_interface.myterraformnic.id}"]
-#    vm_size               = "Standard_DC2s"
-#
-#    storage_os_disk {
-#        name              = "JenkinsWin16ACC-1"
-#        caching           = "ReadWrite"
-#        create_option     = "FromImage"
-#        managed_disk_type = "Premium_LRS"
-#    }
-#
-#    storage_image_reference {
-#        publisher = "MicrosoftWindowsServer"
-#        offer     = "confidential-compute-preview"
-#        sku       = "acc-windows-server-2016-datacenter"
-#        version   = "latest"
-#    }
-#
-#    os_profile {
-#        computer_name  = "JenkinsWin16ACC"
-#        admin_username = "azureuser"
-#        #enableWinRM    = false
-#    }
-#
-#    os_profile_windows_config {
-#        enable_automatic_upgrades = false
-#        provision_vm_agent = true
-#        #winrm = {
-#        #    protocol = "https"
-#        #    certificate_url = "https://econ-test-infrastructure.vault.azure.net/secrets/azure-nightly-test/ed0b413c72884e8684a7f5920e77565f"
-#        #}
-#    }
-#    
-#    boot_diagnostics {
-#        enabled = "true"
-#        storage_uri = "${azurerm_storage_account.mystorageaccount.primary_blob_endpoint}"
-#    }
-#
-#    tags = {
-#        environment = "Jenkins Terraform Demo"
-#    }
-#}
+resource "azurerm_virtual_machine" "JenkinsWin2016ACC-1" {
+    name                  = "JenkinsWin2016ACC-1"
+    location              = "eastus"
+    resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
+    network_interface_ids = ["${azurerm_network_interface.JenkinsWin2016ACC.id}"]
+    vm_size               = "Standard_DC2s"
+
+    storage_os_disk {
+        name              = "Win2016ACC-1"
+        caching           = "ReadWrite"
+        create_option     = "FromImage"
+        managed_disk_type = "Premium_LRS"
+    }
+
+    storage_image_reference {
+        publisher = "MicrosoftWindowsServer"
+        offer     = "confidential-compute-preview"
+        sku       = "acc-windows-server-2016-datacenter"
+        version   = "latest"
+    }
+
+    os_profile {
+        computer_name  = "Win2016ACC"
+        admin_username = "azureuser"
+        admin_password = "InsertPasswordHere1!"
+        #enableWinRM    = false
+    }
+
+    os_profile_windows_config {
+        enable_automatic_upgrades = false
+        provision_vm_agent = true
+    }
+    
+    boot_diagnostics {
+        enabled = "true"
+        storage_uri = "${azurerm_storage_account.mystorageaccount.primary_blob_endpoint}"
+    }
+
+    tags = {
+        environment = "Jenkins Terraform Demo"
+    }
+}
+
+resource "azurerm_virtual_machine" "Win2016SGX-1" {
+    name                  = "JenkinsWin2016SGX-1"
+    location              = "eastus"
+    resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
+    network_interface_ids = ["${azurerm_network_interface.JenkinsWin2016SGX.id}"]
+    vm_size               = "Standard_DC2s"
+
+    storage_os_disk {
+        name              = "JenkinsWin2016SGX-1"
+        caching           = "ReadWrite"
+        create_option     = "FromImage"
+        managed_disk_type = "Premium_LRS"
+    }
+
+    storage_image_reference {
+        publisher = "MicrosoftWindowsServer"
+        offer     = "confidential-compute-preview"
+        sku       = "acc-windows-server-2016-datacenter"
+        version   = "latest"
+    }
+
+    os_profile {
+        computer_name  = "Win2016SGX"
+        admin_username = "azureuser"
+        admin_password = "InsertPasswordHere1!"
+        #enableWinRM    = false
+    }
+
+    os_profile_windows_config {
+        enable_automatic_upgrades = false
+        provision_vm_agent = true
+    }
+    
+    boot_diagnostics {
+        enabled = "true"
+        storage_uri = "${azurerm_storage_account.mystorageaccount.primary_blob_endpoint}"
+    }
+
+    tags = {
+        environment = "Jenkins Terraform Demo"
+    }
+}
+
+resource "azurerm_virtual_machine" "JenkinsWin2016NonSGX-1" {
+    name                  = "JenkinsWin2016NonSGX-1"
+    location              = "eastus"
+    resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
+    network_interface_ids = ["${azurerm_network_interface.JenkinsWin2016NonSGX.id}"]
+    vm_size               = "Standard_DS1_v2"
+
+    storage_os_disk {
+        name              = "JenkinsWin2016NonSGX-1"
+        caching           = "ReadWrite"
+        create_option     = "FromImage"
+        managed_disk_type = "Premium_LRS"
+    }
+
+    storage_image_reference {
+        publisher = "MicrosoftWindowsServer"
+        offer     = "confidential-compute-preview"
+        sku       = "acc-windows-server-2016-datacenter"
+        version   = "latest"
+    }
+
+    os_profile {
+        computer_name  = "Win2016NonSGX"
+        admin_username = "azureuser"
+        admin_password = "InsertPasswordHere1!"
+        #enableWinRM    = false
+    }
+
+    os_profile_windows_config {
+        enable_automatic_upgrades = false
+        provision_vm_agent = true
+    }
+    
+    boot_diagnostics {
+        enabled = "true"
+        storage_uri = "${azurerm_storage_account.mystorageaccount.primary_blob_endpoint}"
+    }
+
+    tags = {
+        environment = "Jenkins Terraform Demo"
+    }
+}

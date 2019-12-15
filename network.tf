@@ -6,9 +6,10 @@ resource "azurerm_network_interface" "JenkinsMaster" {
     network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
 
     ip_configuration {
-        name                          = "myNicConfiguration"
-        subnet_id                     = "${azurerm_subnet.myterraformsubnet.id}"
+        name                          = "nicConfiguration"
+        subnet_id                     = "${azurerm_subnet.subnet.id}"
         private_ip_address_allocation = "Dynamic"
+        public_ip_address_id          = "${azurerm_public_ip.myterraformpublicip.id}"
     }
 
     tags = {
@@ -23,8 +24,8 @@ resource "azurerm_network_interface" "Jenkins1604ACC" {
     network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
 
     ip_configuration {
-        name                          = "myNicConfiguration"
-        subnet_id                     = "${azurerm_subnet.myterraformsubnet.id}"
+        name                          = "nicConfiguration"
+        subnet_id                     = "${azurerm_subnet.subnet.id}"
         private_ip_address_allocation = "Dynamic"
     }
 
@@ -40,8 +41,8 @@ resource "azurerm_network_interface" "Jenkins1804ACC" {
     network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
 
     ip_configuration {
-        name                          = "myNicConfiguration"
-        subnet_id                     = "${azurerm_subnet.myterraformsubnet.id}"
+        name                          = "nicConfiguration"
+        subnet_id                     = "${azurerm_subnet.subnet.id}"
         private_ip_address_allocation = "Dynamic"
     }
 
@@ -57,8 +58,59 @@ resource "azurerm_network_interface" "Jenkins1804NonSGX" {
     network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
 
     ip_configuration {
-        name                          = "myNicConfiguration"
-        subnet_id                     = "${azurerm_subnet.myterraformsubnet.id}"
+        name                          = "nicConfiguration"
+        subnet_id                     = "${azurerm_subnet.subnet.id}"
+        private_ip_address_allocation = "Dynamic"
+    }
+
+    tags = {
+        environment = "Terraform Demo"
+    }
+}
+
+resource "azurerm_network_interface" "JenkinsWin2016ACC" {
+    name                      = "JenkinsWin2016ACC"
+    location                  = "eastus"
+    resource_group_name       = "${azurerm_resource_group.myterraformgroup.name}"
+    network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
+
+    ip_configuration {
+        name                          = "nicConfiguration"
+        subnet_id                     = "${azurerm_subnet.subnet.id}"
+        private_ip_address_allocation = "Dynamic"
+    }
+
+    tags = {
+        environment = "Terraform Demo"
+    }
+}
+
+resource "azurerm_network_interface" "JenkinsWin2016SGX" {
+    name                      = "JenkinsWin2016SGX"
+    location                  = "eastus"
+    resource_group_name       = "${azurerm_resource_group.myterraformgroup.name}"
+    network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
+
+    ip_configuration {
+        name                          = "nicConfiguration"
+        subnet_id                     = "${azurerm_subnet.subnet.id}"
+        private_ip_address_allocation = "Dynamic"
+    }
+
+    tags = {
+        environment = "Terraform Demo"
+    }
+}
+
+resource "azurerm_network_interface" "JenkinsWin2016NonSGX" {
+    name                      = "JenkinsWin2016NonSGX"
+    location                  = "eastus"
+    resource_group_name       = "${azurerm_resource_group.myterraformgroup.name}"
+    network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
+
+    ip_configuration {
+        name                          = "nicConfiguration"
+        subnet_id                     = "${azurerm_subnet.subnet.id}"
         private_ip_address_allocation = "Dynamic"
     }
 
