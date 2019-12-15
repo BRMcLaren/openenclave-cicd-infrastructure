@@ -1,16 +1,22 @@
-/* This terraform configuration creates storage account on Azure & creates a container for storing virtual machine HD image */
-
-resource "azurerm_storage_account" "jenkins_storage" {
-  name 			= "${var.storage_account_name}"
-  resource_group_name 	= "${azurerm_resource_group.terraform_rg.name}"
-  location 		= "${var.location}"
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+# Generate random text for a unique storage account name
+resource "random_id" "randomId" {
+    keepers = {
+        # Generate a new ID only when a new resource group is defined
+        resource_group = "${azurerm_resource_group.myterraformgroup.name}"
+    }
+    
+    byte_length = 8
 }
 
-resource "azurerm_storage_container" "jenkins_cont" {
-  name 			= "${var.container_name}"
-  resource_group_name 	= "${azurerm_resource_group.terraform_rg.name}"
-  storage_account_name 	= "${azurerm_storage_account.jenkins_storage.name}"
-  container_access_type = "private"
+# Create storage account for boot diagnostics
+resource "azurerm_storage_account" "mystorageaccount" {
+    name                        = "diag${random_id.randomId.hex}"
+    resource_group_name         = "${azurerm_resource_group.myterraformgroup.name}"
+    location                    = "eastus"
+    account_tier                = "Standard"
+    account_replication_type    = "LRS"
+
+    tags = {
+        environment = "Terraform Demo"
+    }
 }
