@@ -3,7 +3,7 @@ resource "azurerm_network_interface" "JenkinsMaster" {
     name                      = "JenkinsMaster"
     location                  = "${var.location}"
     resource_group_name       = "${azurerm_resource_group.myterraformgroup.name}"
-    network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
+    network_security_group_id = "${azurerm_network_security_group.masternsg.id}"
 
     ip_configuration {
         name                          = "${var.nicConfiguration}"
@@ -22,7 +22,7 @@ resource "azurerm_network_interface" "Jenkins1604ACC" {
     name                      = "Jenkins1604ACC"
     location                  = "${var.location}"
     resource_group_name       = "${azurerm_resource_group.myterraformgroup.name}"
-    network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
+    network_security_group_id = "${azurerm_network_security_group.agentnsg.id}"
 
     ip_configuration {
         name                          = "${var.nicConfiguration}"
@@ -40,7 +40,7 @@ resource "azurerm_network_interface" "Jenkins1804ACC" {
     name                      = "Jenkins1804ACC"
     location                  = "${var.location}"
     resource_group_name       = "${azurerm_resource_group.myterraformgroup.name}"
-    network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
+    network_security_group_id = "${azurerm_network_security_group.agentnsg.id}"
 
     ip_configuration {
         name                          = "${var.nicConfiguration}"
@@ -58,7 +58,7 @@ resource "azurerm_network_interface" "Jenkins1804NonSGX" {
     name                      = "Jenkins1804NonSGX"
     location                  = "${var.location}"
     resource_group_name       = "${azurerm_resource_group.myterraformgroup.name}"
-    network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
+    network_security_group_id = "${azurerm_network_security_group.agentnsg.id}"
 
     ip_configuration {
         name                          = "${var.nicConfiguration}"
@@ -76,7 +76,7 @@ resource "azurerm_network_interface" "JenkinsWin2016ACC" {
     name                      = "JenkinsWin2016ACC"
     location                  = "${var.location}"
     resource_group_name       = "${azurerm_resource_group.myterraformgroup.name}"
-    network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
+    network_security_group_id = "${azurerm_network_security_group.agentnsg.id}"
 
     ip_configuration {
         name                          = "${var.nicConfiguration}"
@@ -94,7 +94,7 @@ resource "azurerm_network_interface" "JenkinsWin2016SGX" {
     name                      = "JenkinsWin2016SGX"
     location                  = "${var.location}"
     resource_group_name       = "${azurerm_resource_group.myterraformgroup.name}"
-    network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
+    network_security_group_id = "${azurerm_network_security_group.agentnsg.id}"
 
     ip_configuration {
         name                          = "${var.nicConfiguration}"
@@ -112,7 +112,7 @@ resource "azurerm_network_interface" "JenkinsWin2016NonSGX" {
     name                      = "JenkinsWin2016NonSGX"
     location                  = "${var.location}"
     resource_group_name       = "${azurerm_resource_group.myterraformgroup.name}"
-    network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
+    network_security_group_id = "${azurerm_network_security_group.agentnsg.id}"
 
     ip_configuration {
         name                          = "${var.nicConfiguration}"
