@@ -18,7 +18,7 @@ resource "azurerm_network_security_group" "masternsg" {
     
     security_rule {
         name                       = "HTTPS"
-        priority                   = 1002
+        priority                   = 320
         direction                  = "Inbound"
         access                     = "Allow"
         protocol                   = "Tcp"
@@ -30,7 +30,7 @@ resource "azurerm_network_security_group" "masternsg" {
 
     security_rule {
         name                       = "HTTP"
-        priority                   = 1003
+        priority                   = 340
         direction                  = "Inbound"
         access                     = "Allow"
         protocol                   = "Tcp"
@@ -40,6 +40,17 @@ resource "azurerm_network_security_group" "masternsg" {
         destination_address_prefix = "*"
     }
 
+    security_rule {
+        name                       = "Port_50000"
+        priority                   = 330
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "*"
+        source_port_range          = "*"
+        destination_port_range     = "50000"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+    }
     tags = {
         environment = "Terraform Demo"
     }
